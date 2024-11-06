@@ -1,7 +1,16 @@
+import { UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+import { dark } from '@clerk/themes'
+import { redirect } from 'next/navigation'
+
 const Home = () => {
+  const { userId } = auth()
+  if (!userId) {
+    redirect('/login')
+  }
   return (
-    <div className="flex w-screen items-center justify-center">
-      <h1 className="text-red-500 p-5">Hello World!</h1>
+    <div className="flex h-full items-center justify-center">
+      <UserButton showName />
     </div>
   )
 }
