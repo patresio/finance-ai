@@ -11,7 +11,7 @@ const TransactionTypeBadge = ({ transaction }: TransactionTypeBadgeProps) => {
     return (
       <Badge className="bg-muted text-primary font-bold hover:bg-muted">
         <CircleIcon className="mr-2 fill-primary" size={8} />
-        Depósito
+        Ganho
       </Badge>
     );
   }
@@ -19,7 +19,7 @@ const TransactionTypeBadge = ({ transaction }: TransactionTypeBadgeProps) => {
     return (
       <Badge className="font-bold text-danger bg-danger bg-opacity-10 hover:bg-danger hover:bg-opacity-10">
         <CircleIcon className="mr-2 fill-danger" size={8} />
-        Despesa
+        Gasto
       </Badge>
     );
   }
