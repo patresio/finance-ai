@@ -41,14 +41,15 @@ import {
   TRANSACTION_TYPE_OPTIONS,
   TRANSACTION_CATEGORY_OPTIONS,
 } from "../_constants/transaction";
-import {} from "@radix-ui/react-select";
 import { DatePicker } from "./ui/date-picker";
+import { addTransaction } from "../_action/add-transaction";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
     message: "O nome é obrigatório",
   }),
-  amount: z.string().trim().min(1, {
+  amount: z.number({ required_error: "O valor é obrigatório" }).positive({
     message: "O valor é obrigatório",
   }),
   date: z.date({ required_error: "A data é obrigatória" }),
@@ -66,10 +67,11 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 const AddTransactionButton = () => {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      amount: "",
+      amount: 0,
       category: TransactionCategory.OTHER,
       date: new Date(),
       name: "",
@@ -78,13 +80,25 @@ const AddTransactionButton = () => {
     },
   });
 
-  const onSubmit = (values: FormSchema) => {
-    console.log({ values });
+  const onSubmit = async (values: FormSchema) => {
+    try {
+      await addTransaction({
+        ...values,
+      });
+
+      setDialogIsOpen(false);
+      form.reset();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <Dialog
+      open={dialogIsOpen}
       onOpenChange={(open) => {
+        setDialogIsOpen(open);
+
         if (!open) {
           form.reset();
         }
@@ -127,7 +141,14 @@ const AddTransactionButton = () => {
                 <FormItem>
                   <FormLabel>Valor</FormLabel>
                   <FormControl>
-                    <MoneyInput placeholder="Digite o valor ..." {...field} />
+                    <MoneyInput
+                      placeholder="Digite o valor ..."
+                      onValueChange={({ floatValue }) => {
+                        field.onChange(floatValue);
+                      }}
+                      onBlur={field.onBlur}
+                      disabled={field.disabled}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
