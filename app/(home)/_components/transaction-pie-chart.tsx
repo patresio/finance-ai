@@ -19,7 +19,7 @@ const chartConfig = {
     color: "#E93030",
     icon: () => (
       <TrendingDownIcon
-        className="text-[#E93030] w-9 h-9 p-2 bg-white bg-opacity-5 rounded-sm"
+        className="text-[#E93030] w-9 h-9 p-2 bg-white bg-opacity-[3%] rounded-lg"
         size={16}
       />
     ),
@@ -29,7 +29,7 @@ const chartConfig = {
     color: "#55B02e",
     icon: () => (
       <TrendingUpIcon
-        className="text-[#55B02e] w-9 h-9 p-2 bg-white bg-opacity-5 rounded-sm"
+        className="text-[#55B02e] w-9 h-9 p-2 bg-white bg-opacity-[3%] rounded-lg"
         size={16}
       />
     ),
@@ -39,7 +39,7 @@ const chartConfig = {
     color: "#FFF",
     icon: () => (
       <PiggyBankIcon
-        className="text-white w-9 h-9 p-2 bg-white bg-opacity-5 rounded-sm"
+        className="text-white w-9 h-9 p-2 bg-white bg-opacity-[3%] rounded-lg"
         size={16}
       />
     ),
@@ -84,11 +84,11 @@ const TransactionPieChart = ({
   ];
 
   return (
-    <Card className="flex flex-col px-12 py-6">
+    <Card className="flex flex-col p-7">
       <CardContent className="flex-1 pb-0 ">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square max-h-[180px]"
         >
           <PieChart>
             <ChartTooltip
