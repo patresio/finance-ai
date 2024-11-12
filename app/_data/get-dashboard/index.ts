@@ -1,4 +1,5 @@
 import { db } from "@/app/_lib/prisma";
+import { auth } from "@clerk/nextjs/server";
 import { TransactionType } from "@prisma/client";
 import type {
   TotalExpensesPerCategory,
@@ -6,8 +7,13 @@ import type {
 } from "./type";
 
 export const getDashboard = async (month: string) => {
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("Unathorized");
+  }
   // TODO: Implementar o filtro de ano
   const where = {
+    userId,
     date: {
       gte: new Date(`2024-${month}-01`),
       lte: new Date(`2024-${month}-31`),
