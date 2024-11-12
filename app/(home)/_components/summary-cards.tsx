@@ -6,45 +6,22 @@ import {
   WalletIcon,
 } from "lucide-react";
 import SummaryCard from "./summary-card";
-import { db } from "@/app/_lib/prisma";
+import {} from "@/app/_lib/prisma";
 
 interface SummaryCards {
   month: string;
+  balance: number;
+  depositsTotal: number;
+  expensesTotal: number;
+  investimentsTotal: number;
 }
 
-const SummaryCards = async ({ month }: SummaryCards) => {
-  const where = {
-    date: {
-      gte: new Date(`2024-${month}-01`),
-      lte: new Date(`2024-${month}-31`),
-    },
-  };
-  const depositsTotal = Number(
-    (
-      await db.transaction.aggregate({
-        where: { ...where, type: "DEPOSIT" },
-        _sum: { amount: true },
-      })
-    )?._sum?.amount || 0,
-  );
-  const investimentsTotal = Number(
-    (
-      await db.transaction.aggregate({
-        where: { ...where, type: "INVESTMENT" },
-        _sum: { amount: true },
-      })
-    )?._sum?.amount || 0,
-  );
-  const expensesTotal = Number(
-    (
-      await db.transaction.aggregate({
-        where: { ...where, type: "EXPENSE" },
-        _sum: { amount: true },
-      })
-    )?._sum?.amount || 0,
-  );
-  const balance = depositsTotal - investimentsTotal - expensesTotal;
-
+const SummaryCards = async ({
+  balance,
+  depositsTotal,
+  expensesTotal,
+  investimentsTotal,
+}: SummaryCards) => {
   return (
     <div className="space-y-6">
       {/* First card */}
@@ -59,23 +36,38 @@ const SummaryCards = async ({ month }: SummaryCards) => {
       {/* Other cards */}
       <div className="grid grid-cols-3 gap-6">
         <SummaryCard
-          icon={<PiggyBankIcon size={16} />}
+          icon={
+            <PiggyBankIcon
+              size={16}
+              className="w-9 h-9 p-2 bg-white bg-opacity-5 rounded-sm"
+            />
+          }
           title="Investidos"
           amount={investimentsTotal}
           size="sm"
           color="secondary"
         />
         <SummaryCard
-          icon={<TrendingDownIcon size={16} className="text-primary" />}
-          title="Despesas"
-          amount={expensesTotal}
+          icon={
+            <TrendingUpIcon
+              size={16}
+              className="text-[#55B02e] w-9 h-9 p-2 bg-white bg-opacity-5 rounded-sm"
+            />
+          }
+          title="Receitas"
+          amount={depositsTotal}
           size="sm"
           color="default"
         />
         <SummaryCard
-          icon={<TrendingUpIcon size={16} className="text-red-500" />}
-          title="Receitas"
-          amount={depositsTotal}
+          icon={
+            <TrendingDownIcon
+              size={16}
+              className="text-[#E93030] w-9 h-9 p-2 bg-white bg-opacity-5 rounded-sm"
+            />
+          }
+          title="Despesas"
+          amount={expensesTotal}
           size="sm"
           color="default"
         />

@@ -19,9 +19,7 @@ const SummaryCard = ({
   color,
 }: SummaryCardProps) => {
   return (
-    <Card
-      className={`h-full ${color === "secondary" ? "bg-zinc-900" : "bg-default"}`}
-    >
+    <Card className={`${color === "secondary" ? "bg-white bg-opacity-5" : ""}`}>
       <CardHeader className="flex-row items-center gap-4">
         {icon}
         <p
