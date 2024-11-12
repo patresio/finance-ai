@@ -6,6 +6,7 @@ import type {
 } from "./type";
 
 export const getDashboard = async (month: string) => {
+  // TODO: Implementar o filtro de ano
   const where = {
     date: {
       gte: new Date(`2024-${month}-01`),
@@ -78,6 +79,12 @@ export const getDashboard = async (month: string) => {
     ),
   }));
 
+  const lastTransactions = await db.transaction.findMany({
+    where,
+    orderBy: { date: "desc" },
+    take: 10,
+  });
+
   return {
     balance,
     depositsTotal,
@@ -85,5 +92,6 @@ export const getDashboard = async (month: string) => {
     expensesTotal,
     typePercentage,
     totalExpensePerCategory,
+    lastTransactions,
   };
 };
