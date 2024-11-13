@@ -26,6 +26,7 @@ const TransactionsPage = async () => {
           <AddTransactionButton />
         </div>
         <ScrollArea>
+          {/* TODO:Buscar dados da tabela por mes pegar do getData */}
           <DataTable columns={transactionColumns} data={transactions} />
         </ScrollArea>
       </div>
