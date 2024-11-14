@@ -16,8 +16,8 @@ export const createStripeCheckout = async () => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"], // Define o tipo de método de pagamento como cartão
     mode: "subscription", // Define o modo como assinatura
-    success_url: "http://localhost:3000", // Define a URL de sucesso
-    cancel_url: "http://localhost:3000", // Define a URL de cancelamento
+    success_url: process.env.APP_URL, // Define a URL de sucesso
+    cancel_url: process.env.APP_URL, // Define a URL de cancelamento
     subscription_data: {
       metadata: {
         clerk_user_id: userId,
@@ -25,7 +25,7 @@ export const createStripeCheckout = async () => {
     },
     line_items: [
       {
-        price: process.env.STRIPE_PREMIUM_PLAN_PRICET_ID, // Define o ID do plano de assinatura
+        price: process.env.STRIPE_PREMIUM_PLAN_PRICE_ID, // Define o ID do plano de assinatura
         quantity: 1,
       },
     ],
