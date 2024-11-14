@@ -1,5 +1,6 @@
 import AddTransactionButton from "@/app/_components/add-transaction-button";
 import { Card, CardContent, CardHeader } from "@/app/_components/ui/card";
+import {} from "@/app/_data/can-user-add-transaction";
 import {} from "@radix-ui/react-select";
 import { ReactNode } from "react";
 
@@ -9,14 +10,16 @@ interface SummaryCardProps {
   amount: number;
   size: "sm" | "lg";
   color: "default" | "secondary";
+  userCanAddTransaction?: boolean;
 }
 
-const SummaryCard = ({
+const SummaryCard = async ({
   icon,
   title,
   amount,
   size,
   color,
+  userCanAddTransaction,
 }: SummaryCardProps) => {
   return (
     <Card className={`${color === "secondary" ? "bg-white bg-opacity-5" : ""}`}>
@@ -37,7 +40,9 @@ const SummaryCard = ({
             currency: "BRL",
           }).format(amount)}
         </p>
-        {size === "lg" && <AddTransactionButton />}
+        {size === "lg" && (
+          <AddTransactionButton userCanAddTransaction={userCanAddTransaction} />
+        )}
       </CardContent>
     </Card>
   );
