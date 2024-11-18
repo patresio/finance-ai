@@ -29,7 +29,7 @@ const ExpensePerCategory = ({
             </div>
             <Progress value={category.percentageOfTotal} />
           </div>
-        )) || <p>Carregando...</p>}
+        ))}
       </CardContent>
     </ScrollArea>
   );

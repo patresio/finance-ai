@@ -111,7 +111,7 @@ const TransactionPieChart = ({
               <item.icon />
               <p className="text-sm text-muted-foreground">{item.type}</p>
             </div>
-            <p className="text-sm font-bold">{item.perc}%</p>
+            <p className="text-sm font-bold">{item.perc || 0}%</p>
           </div>
         ))}
       </div>
