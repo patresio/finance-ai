@@ -9,6 +9,8 @@ import { getDashboard } from "../_data/get-dashboard";
 import ExpensePerCategory from "./_components/expenses-per-category";
 import LastTransactions from "./_components/last-transactions";
 import { canUserAddTransaction } from "../_data/can-user-add-transaction";
+import AiReportButton from "./ai-report-button";
+import { GetUserPlanPremium } from "../_data/get-user-plan-premium";
 
 interface HomeParams {
   searchParams: {
@@ -22,7 +24,7 @@ const Home = async ({ searchParams: { month, year } }: HomeParams) => {
   if (!userId) {
     redirect("/login");
   }
-  //  CONSOLE LOG PARA TESTES DE ANO
+  //  TODO: CONSOLE LOG PARA TESTES DE ANO
   console.log({ month, year });
   // Current month
   const monthCurrent = new Date().getMonth() + 1;
@@ -35,6 +37,7 @@ const Home = async ({ searchParams: { month, year } }: HomeParams) => {
 
   const dashboard = await getDashboard(month);
   const userCanAddTransaction = await canUserAddTransaction();
+  const getUserPlanPremium = await GetUserPlanPremium();
 
   return (
     <>
@@ -42,7 +45,10 @@ const Home = async ({ searchParams: { month, year } }: HomeParams) => {
       <div className="p-6 space-y-6 flex flex-col ">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Dashboard</h1>
-          <TimeSelect />
+          <div className="flex items-center gap-2">
+            {getUserPlanPremium && <AiReportButton month={month} />}
+            <TimeSelect />
+          </div>
         </div>
         <div className="grid grid-cols-[2fr,1fr] gap-6 overflow-hidden">
           <div className="flex flex-col gap-6 overflow-hidden">

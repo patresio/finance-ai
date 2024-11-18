@@ -2,7 +2,7 @@ import { db } from "@/app/_lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { TransactionType } from "@prisma/client";
 import type {
-  TotalExpensesPerCategory,
+  TotalExpensePerCategory,
   TransactionPercentagePerType,
 } from "./type";
 
@@ -56,17 +56,17 @@ export const getDashboard = async (month: string) => {
 
   const typePercentage: TransactionPercentagePerType = {
     [TransactionType.DEPOSIT]: Math.round(
-      (depositsTotal / transactionTotal) * 100,
+      (Number(depositsTotal || 0) / Number(transactionTotal)) * 100,
     ),
     [TransactionType.EXPENSE]: Math.round(
-      (expensesTotal / transactionTotal) * 100,
+      (Number(expensesTotal || 0) / Number(transactionTotal)) * 100,
     ),
     [TransactionType.INVESTMENT]: Math.round(
-      (investimentsTotal / transactionTotal) * 100,
+      (Number(investimentsTotal || 0) / Number(transactionTotal)) * 100,
     ),
   };
 
-  const totalExpensePerCategory: TotalExpensesPerCategory[] = (
+  const totalExpensePerCategory: TotalExpensePerCategory[] = (
     await db.transaction.groupBy({
       by: ["category"],
       where: {
@@ -98,6 +98,6 @@ export const getDashboard = async (month: string) => {
     expensesTotal,
     typePercentage,
     totalExpensePerCategory,
-    lastTransactions,
+    lastTransactions: JSON.parse(JSON.stringify(lastTransactions)),
   };
 };
