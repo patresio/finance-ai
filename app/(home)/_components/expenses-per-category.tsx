@@ -1,11 +1,11 @@
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import { CardContent, CardHeader, CardTitle } from "@/app/_components/ui/card";
-import { TotalExpensesPerCategory } from "../../_data/get-dashboard/type";
 import { Progress } from "@/app/_components/ui/progress";
 import { TRANSACTION_CATEGORY_LABELS } from "../../_constants/transaction";
+import type { TotalExpensePerCategory } from "@/app/_data/get-dashboard/type";
 
 interface ExpensePerCategoryProps {
-  expensesPerCategory: TotalExpensesPerCategory[];
+  expensesPerCategory: TotalExpensePerCategory[];
 }
 
 const ExpensePerCategory = ({

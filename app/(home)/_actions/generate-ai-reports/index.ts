@@ -43,7 +43,7 @@ export const generateAiReports = async ({ month }: GenerateAiReportSchema) => {
     },
   });
   // mandas as transações para a IA para gerar um relatório com base nas transações fazendo um insight
-  const content = `Gere um relatório com insights sobre as minhas finanças, com dicas e orientações de como melhorar minha vida financeira. As transações estão divididas por ponto e vírgula. A estrutura de cada uma é {DATA}-{TIPO}-{VALOR}-{CATEGORIA}. São elas:
+  const content = `Gere um relatório com insights sobre as minhas finanças, com dicas e orientações de como melhorar minha vida financeira. As transações estão divididas por ponto e vírgula. A estrutura de cada uma é {DATA}-{TIPO}-{VALOR}-{CATEGORIA}, não utilize tabelas, caso for fazer a demonstração utilize listas. São elas:
   ${transactions
     .map(
       (transaction) =>
