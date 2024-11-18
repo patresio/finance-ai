@@ -14,7 +14,7 @@ export const createStripeCheckout = async () => {
     apiVersion: "2024-10-28.acacia",
   });
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card", "pix", "boleto"], // Define o tipo de método de pagamento como cartão
+    payment_method_types: ["card", "boleto", "cashapp"], // Define o tipo de método de pagamento como cartão
     mode: "subscription", // Define o modo como assinatura
     success_url: process.env.APP_URL, // Define a URL de sucesso
     cancel_url: process.env.APP_URL, // Define a URL de cancelamento
