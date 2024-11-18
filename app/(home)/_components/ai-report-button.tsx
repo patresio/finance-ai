@@ -1,6 +1,6 @@
 "use client";
 import { BotIcon, Loader2Icon } from "lucide-react";
-import { Button } from "../_components/ui/button";
+import { Button } from "../../_components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -10,10 +10,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../_components/ui/dialog";
-import { generateAiReports } from "./_actions/generate-ai-reports";
+} from "../../_components/ui/dialog";
+import { generateAiReports } from "./../_actions/generate-ai-reports";
 import { useState } from "react";
-import { ScrollArea } from "../_components/ui/scroll-area";
+import { ScrollArea } from "../../_components/ui/scroll-area";
 import Markdown from "react-markdown";
 
 interface AiReportButtonProps {
