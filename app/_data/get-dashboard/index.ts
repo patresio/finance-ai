@@ -25,7 +25,7 @@ export const getDashboard = async (month: string) => {
         where: { ...where, type: "DEPOSIT" },
         _sum: { amount: true },
       })
-    )?._sum?.amount || 0,
+    )?._sum?.amount,
   );
   const investimentsTotal = Number(
     (
@@ -33,7 +33,7 @@ export const getDashboard = async (month: string) => {
         where: { ...where, type: "INVESTMENT" },
         _sum: { amount: true },
       })
-    )?._sum?.amount || 0,
+    )?._sum?.amount,
   );
   const expensesTotal = Number(
     (
@@ -41,7 +41,7 @@ export const getDashboard = async (month: string) => {
         where: { ...where, type: "EXPENSE" },
         _sum: { amount: true },
       })
-    )?._sum?.amount || 0,
+    )?._sum?.amount,
   );
   const balance = depositsTotal - investimentsTotal - expensesTotal;
 
