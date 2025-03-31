@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💵💰💳 Finance IA
 
-## Getting Started
+<div align="center">
+<img src="https://github.com/patresio/finance-ai/raw/main/.gitassets/capa.png" width="350" />
 
-First, run the development server:
+<div data-badges>
+    <img src="https://img.shields.io/github/stars/patresio/finance-ai?style=for-the-badge" alt="GitHub stars" />
+    <img src="https://img.shields.io/github/forks/patresio/finance-ai?style=for-the-badge" alt="GitHub forks" />
+    <img src="https://img.shields.io/github/issues/patresio/finance-ai?style=for-the-badge" alt="GitHub issues" />
+</div>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<div data-badges>
+    <img src="https://img.shields.io/badge/node.js-%2343853D.svg?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+    <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+    <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/react%20native-%2361DAFB.svg?style=for-the-badge&logo=react&logoColor=white" alt="React Native" />
+</div>
+</div>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O FinanceAI é um assistente financeiro pessoal que usa inteligência artificial para simplificar o gerenciamento do seu dinheiro. Ele analisa suas transações, gera relatórios personalizados e oferece insights valiosos para te ajudar a tomar decisões financeiras mais inteligentes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🖥️ Como rodar este projeto 🖥️
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Requisitos:
 
-## Learn More
+- [Node.js](https://nodejs.org/pt) instalado
 
-To learn more about Next.js, take a look at the following resources:
+### Execução:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone este repositório:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```sh
+   git clone https://github.com/patresio/finance-ai
+   ```
 
-## Deploy on Vercel
+2. Acesse o diretório do projeto:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```sh
+   cd finance-ai
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Instale as dependências:
+
+   ```sh
+   npm install
+   ```
+
+4. Copie a env.sample:
+
+  ```sh
+  cp env.sample .env
+  ```
+
+5. Cole as keys necessárias no arquivo .env é preciso ter conta na GOOGLE, STRIPE e CLERK.
+
+6. Inicie o servidor:
+
+   ```sh
+   npm run dev
+   ```
+
+7. Acesse o projeto em https://localhost:3000
+
+## 🗒️ Features do projeto 🗒️
+
+ - Análise Automática de Transações: Categoriza suas despesas e receitas automaticamente, facilitando o acompanhamento do seu fluxo de caixa.
+ - Relatórios Personalizados com IA: Gera relatórios detalhados e fáceis de entender, com visualizações claras da sua saúde financeira.
+ - Previsões e Insights: Usa IA para prever seus gastos futuros e identificar oportunidades de economia.
+ - Planejamento de Metas Financeiras: Ajuda você a definir e acompanhar metas de economia e investimento.
+ - Alertas e Notificações: Envia alertas personalizados sobre gastos excessivos, contas a pagar e outras informações importantes.
+
+![](https://github.com/patresio/finance-ai/raw/main/.gitassets/2.jpg)
+
+## 💎 Links úteis 💎
+
+- [Next.js](https://nextjs.org/docs)
